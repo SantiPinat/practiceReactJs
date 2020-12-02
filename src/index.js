@@ -5,11 +5,6 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 
-// TEMPLATE STRINGS
-
-
-
-
 
 ReactDOM.render(
   <React.StrictMode>
