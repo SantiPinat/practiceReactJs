@@ -1,19 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+const apiKey = '4pduJ0HAiiDQ8EfWrUTxo48EaVV7D3vU'; // GENERA APIKEY
+ 
+const httpGetReq = fetch( `http://api.giphy.com/v1/gifs/random?api_key=${apiKey}`); //CONECTA CON API
 
 
+//PROMESAS EN CADENA
+httpGetReq.then( resp => resp.json()) //PRIMER PROMESA
+          .then( ({data}) => {            //DESESTRUCTURA EL ARREGLO y SEGUNDA PROMESA DE LA CADENA 
+              
+            const {url} = data.images.original;
+              
+              const img = document.createElement('img');
+              
+              img.src = url;
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+              document.body.append(img);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+          })
+          .catch(console.warn); // UN SOLO CATCH ATRAPA TODOS LOS ERRORES DE LA CADENA
+
+
